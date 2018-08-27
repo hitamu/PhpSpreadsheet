@@ -432,7 +432,7 @@ class Html extends BaseWriter
             $html .= $this->generateTableHeader($sheet);
 
             // Get worksheet dimension
-            $dimension = explode(':', $sheet->calculateWorksheetDimension());
+            $dimension = explode(':', $sheet->calculateWorksheetDataDimension());
             $dimension[0] = Coordinate::coordinateFromString($dimension[0]);
             $dimension[0][0] = Coordinate::columnIndexFromString($dimension[0][0]);
             $dimension[1] = Coordinate::coordinateFromString($dimension[1]);
@@ -1131,7 +1131,7 @@ class Html extends BaseWriter
 
         if (!$this->useInlineCss) {
             $gridlines = $pSheet->getShowGridlines() ? ' gridlines' : '';
-            $html .= '    <table border="0" cellpadding="0" cellspacing="0" id="sheet' . $sheetIndex . '" class="sheet' . $sheetIndex . $gridlines . '">' . PHP_EOL;
+            $html .= '    <table border="1" cellpadding="0" cellspacing="0" id="sheet' . $sheetIndex . '" class="sheet' . $sheetIndex . $gridlines . '">' . PHP_EOL;
         } else {
             $style = isset($this->cssStyles['table']) ?
                 $this->assembleCSS($this->cssStyles['table']) : '';
@@ -1139,7 +1139,7 @@ class Html extends BaseWriter
             if ($this->isPdf && $pSheet->getShowGridlines()) {
                 $html .= '    <table border="1" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="1" style="' . $style . '">' . PHP_EOL;
             } else {
-                $html .= '    <table border="0" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="0" style="' . $style . '">' . PHP_EOL;
+                $html .= '    <table border="1" cellpadding="1" id="sheet' . $sheetIndex . '" cellspacing="0" style="' . $style . '">' . PHP_EOL;
             }
         }
 
