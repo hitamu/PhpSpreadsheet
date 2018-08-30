@@ -511,6 +511,9 @@ class Html extends BaseWriter
 
             // Next sheet
             ++$sheetId;
+
+            // Display red-border as non-border 
+            $html = str_replace("1px solid #FF0000", "none", $html);
         }
 
         return $html;
